@@ -13,17 +13,8 @@ steps:
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
 
-- task: UsePythonVersion@0
+- task: Bash@3
   inputs:
-    versionSpec: '3.x' # Use Python 3.x
-    addToPath: true
-
-- script: |
-    pip install --upgrade pip
-    pip install language-tool-python
-  displayName: 'Install LanguageTool'
-
-- script: |
-    lt --version
-    lt --json /path/to/your/code
+    targetType: 'inline'
+    script: './check_grammar.sh'
   displayName: 'Check Grammar'
